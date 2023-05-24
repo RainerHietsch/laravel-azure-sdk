@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "revealit/laravel-azure-sdk",
+    "description": "A PHP Laravel wrapper for the Microsoft Azure REST API",
     "keywords": [
-        ":vendor_name",
+        "revealit",
         "laravel",
-        ":package_slug"
+        "laravel-azure-sdk"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/revealit/laravel-azure-sdk",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Rainer Hietsch",
+            "email": "rainer.hietsch@gmail.com",
             "role": "Developer"
         }
     ],
@@ -23,25 +23,21 @@
     "require-dev": {
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.9",
-        "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Revealit\\AzureSdk\\": "src/",
+            "Revealit\\AzureSdk\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Revealit\\AzureSdk\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +57,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Revealit\\AzureSdk\\AzureSdkServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "AzureSdk": "Revealit\\AzureSdk\\Facades\\AzureSdk"
             }
         }
     },

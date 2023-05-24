@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Revealit\AzureSdk\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class AzureSdkCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-azure-sdk';
 
     public $description = 'My command';
 
