@@ -61,7 +61,7 @@
                 "Revealit\\AzureSdk\\AzureSdkServiceProvider"
             ],
             "aliases": {
-                "AzureSdk": "Revealit\\AzureSdk\\Facades\\AzureSdk",
+                "AzureSdk": "Revealit\\AzureSdk\\Facades\\AzureSdk"
             }
         }
     },
