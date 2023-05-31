@@ -17,7 +17,7 @@ class AzureSdk
     }
     public function pushToQueue(
         string $queue,
-        string $message,
+        array $message,
         ?string $service_bus = null,
         ?string $token = null,
         ?AzureServiceBusConnector $serviceBusController = null): SaloonResponse

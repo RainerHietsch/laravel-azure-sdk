@@ -16,7 +16,7 @@ class PushToQueueRequest extends SaloonRequest
 
     public function __construct(
         protected string $queue,
-        protected string $message,
+        protected array $message,
     ){}
 
     public function defineEndpoint(): string
@@ -33,8 +33,6 @@ class PushToQueueRequest extends SaloonRequest
 
     public function defaultData(): array
     {
-        return [
-            'message' => $this->message
-        ];
+        return $this->message;
     }
 }

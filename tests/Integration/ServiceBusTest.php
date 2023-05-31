@@ -23,7 +23,7 @@ class ServiceBusTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request = new PushToQueueRequest('test_queue', 'test_message');
+        $request = new PushToQueueRequest('test_queue', ['message' => 'test message']);
 
         // Expect 1 times
         $serviceBus->expects($this->once())
@@ -38,7 +38,7 @@ class ServiceBusTest extends TestCase
 
         // no need to mock anything
         $azureSdk = new AzureSdk();
-        $response = $azureSdk->pushToQueue('queue_name', 'message', 'test_service', 'abcd', $serviceBus);
+        $response = $azureSdk->pushToQueue('queue_name', ['message' => 'test message'], 'test_service', 'abcd', $serviceBus);
 
         $this->assertInstanceOf(SaloonResponse::class, $response);
     }
@@ -49,7 +49,7 @@ class ServiceBusTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request = new PushToQueueRequest('test_queue', 'test_message');
+        $request = new PushToQueueRequest('test_queue', ['message' => 'test message']);
 
         // Expect to send the request
         $serviceBus->expects($this->once())
@@ -62,7 +62,7 @@ class ServiceBusTest extends TestCase
             ->method('getAPIToken')
             ->willReturn('abcd');
 
-        $response = $azureSdk->pushToQueue('queue_name', 'message', 'test_service', null, $serviceBus);
+        $response = $azureSdk->pushToQueue('queue_name', ['message' => 'test message'], 'test_service', null, $serviceBus);
 
         $this->assertInstanceOf(SaloonResponse::class, $response);
     }
