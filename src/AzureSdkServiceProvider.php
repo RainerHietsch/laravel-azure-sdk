@@ -2,23 +2,10 @@
 
 namespace Revealit\AzureSdk;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class AzureSdkServiceProvider extends PackageServiceProvider
+class AzureSdkServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
-    {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
-        $package
-            ->name('laravel-azure-sdk')
-            ->hasConfigFile();
-    }
-
     public function boot()
     {
         if($this->app->runningInConsole())
