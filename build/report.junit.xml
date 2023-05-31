@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/rainer/Repos/RevealitTV/laravel-azure-sdk/tests/Integration" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.024366">
+    <testsuite name="Revealit\AzureSdk\Tests\Integration\ServiceBusTest" file="/Users/rainer/Repos/RevealitTV/laravel-azure-sdk/tests/Integration/ServiceBusTest.php" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.024366">
+      <testcase name="testPushToQueueWithProvidedToken" file="/Users/rainer/Repos/RevealitTV/laravel-azure-sdk/tests/Integration/ServiceBusTest.php" line="20" class="Revealit\AzureSdk\Tests\Integration\ServiceBusTest" classname="Revealit.AzureSdk.Tests.Integration.ServiceBusTest" assertions="3" time="0.024366"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

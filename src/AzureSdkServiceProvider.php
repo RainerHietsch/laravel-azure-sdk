@@ -4,7 +4,6 @@ namespace Revealit\AzureSdk;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Revealit\AzureSdk\Commands\AzureSdkCommand;
 
 class AzureSdkServiceProvider extends PackageServiceProvider
 {
@@ -17,9 +16,21 @@ class AzureSdkServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-azure-sdk')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-azure-sdk_table')
-            ->hasCommand(AzureSdkCommand::class);
+            ->hasConfigFile();
+    }
+
+    public function boot()
+    {
+        if($this->app->runningInConsole())
+        {
+            $this->publishes([
+                __DIR__.'/../config/azure-sdk.php' => config_path('azure-sdk.php'),
+            ], 'config');
+        }
+    }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/azure-sdk.php', 'azure-sdk');
     }
 }

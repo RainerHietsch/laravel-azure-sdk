@@ -23,37 +23,72 @@ You can install the package via composer:
 composer require revealit/laravel-azure-sdk
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-azure-sdk-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-azure-sdk-config"
+php artisan vendor:publish
 ```
+
+and then entering the number of the ServiceProvider
 
 This is the contents of the published config file:
 
 ```php
 return [
+
+    /*
+     * The Application (client) ID
+     */
+    "client_id" => "",
+
+    /*
+     * Directory (tenant) ID
+     */
+    "tenant_id" => "",
+
+    /*
+     * The apps secret value. This value is only visible immediately after creation,
+     * so be sure to note it down.
+     */
+    "client_secret_value" => ""
+    
+    /*
+     * The default service bus to use.
+     */
+    "default_service_bus_namespace" => ""
+
 ];
-```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-azure-sdk-views"
 ```
 
 ## Usage
 
+Edit `azure-sdk.php` in the Laravel `config` folder, and enter your Apps keys and secret.
+
 ```php
-$azureSdk = new Revealit\AzureSdk();
-echo $azureSdk->echoPhrase('Hello, Revealit!');
+// Send a message to a queue
+return AzureSdk::pushToQueue("test_queue", "Hello World!")->status();
+```
+
+This will generate a token and send a message to the queue specified in the first parameter.
+
+You can also send a message to a different service bus:
+```php
+// Send a message to a queue in a different service bus
+return AzureSdk::pushToQueue("test_queue", "Hello World!", "different_service_bus")->status();
+```
+
+If you want to send multiple messages, you can generate a token first and pass it in as an optional forth parameter:
+```php
+// Send messages to different queues using the same token
+$token = AzureSdk::getAPIToken();
+$serviceBus = congig("azure-sdk.default_service_bus_namespace");
+AzureSdk::pushToQueue("test_queue", "Hello World!", $serviceBus, $token)->status();
+AzureSdk::pushToQueue("test_queue_2", "Another Message", $serviceBus, $token)->status();
+```
+
+## Testing
+
 ```
 
 ## Testing
