@@ -63,10 +63,13 @@ return [
 Edit `azure-sdk.php` in the Laravel `config` folder, and enter your Apps keys and secret.
 
 ```php
+use Revealit\AzureSdk\Facades\AzureSdk;
+
 // Define an array
 $message = [
     "title" => "Hello World!"
 ];
+
 // Send a message to a queue
 return AzureSdk::pushToQueue("test_queue", $message)->status();
 ```
@@ -75,45 +78,28 @@ This will generate a token and send a message to the queue specified in the firs
 
 You can also send a message to a different service bus:
 ```php
+use Revealit\AzureSdk\Facades\AzureSdk;
+
 // Send a message to a queue in a different service bus
-return AzureSdk::pushToQueue("test_queue", "Hello World!", "different_service_bus")->status();
+return AzureSdk::pushToQueue("test_queue", ["msg" => "Hello World!"], "different_service_bus")->status();
 ```
 
 If you want to send multiple messages, you can generate a token first and pass it in as an optional forth parameter:
 ```php
-// Send messages to different queues using the same token
+use Revealit\AzureSdk\Facades\AzureSdk;
+
 $token = AzureSdk::getAPIToken();
-$serviceBus = congig("azure-sdk.default_service_bus_namespace");
-AzureSdk::pushToQueue("test_queue", "Hello World!", $serviceBus, $token)->status();
-AzureSdk::pushToQueue("test_queue_2", "Another Message", $serviceBus, $token)->status();
+$serviceBus = config("azure-sdk.default_service_bus_namespace");
+$message1 = ["url" => "https:www.github.com"];
+
+// Send messages to different queues using the same token
+AzureSdk::pushToQueue("test_queue", $message1, $serviceBus, $token)->status();
+AzureSdk::pushToQueue("test_queue_2", ["title" => "Azure SDK"], $serviceBus, $token)->status();
 ```
-
-## Testing
-
-```
-
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
 - [Rainer Hietsch](https://github.com/rainerhietsch)
-- [All Contributors](../../contributors)
 
 ## License
 
